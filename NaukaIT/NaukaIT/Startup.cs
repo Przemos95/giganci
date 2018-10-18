@@ -12,6 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NaukaIT.DAL.Entities;
+using NaukaIT.DAL.Interfaces;
+using NaukaIT.DAL.Repositories;
 
 namespace NaukaIT
 {
@@ -37,6 +39,10 @@ namespace NaukaIT
 
             services.AddDbContext<BaseContext>
                 (options => options.UseSqlServer(Configuration.GetConnectionString("BaseConnection")));
+
+            services.AddScoped<IArticleRepository, ArticleRepository>();
+            services.AddScoped<IClassGroupRepository, ClassGroupRepository>();
+            services.AddScoped<IFileRepository, FileRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
