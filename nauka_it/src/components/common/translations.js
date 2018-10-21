@@ -9,6 +9,12 @@ export const PL = {
         programs: "Paczki z zajęć",
         quiz: "Quizy",
         email: "Napisz do mnie"
+    },
+    email: {
+        emailAddress: 'Twój email',
+        message: 'Wiadomość',
+        rows: '6',
+        send: 'Wyślij'
     }
 };
 

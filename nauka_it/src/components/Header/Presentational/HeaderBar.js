@@ -17,7 +17,6 @@ import AlternateEmail from '@material-ui/icons/AlternateEmail';
 
 import {PL, url} from '../../common/translations';
 import {HeaderBarStyles} from '../Styles/HeaderStyles';
-import { checkPropTypes } from 'prop-types';
 
 export const HeaderBar = (props) => {
     
