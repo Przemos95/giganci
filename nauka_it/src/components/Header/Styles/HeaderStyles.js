@@ -12,7 +12,7 @@ export const HeaderBarStyles = {
     },
     Root: {
         flexGrow: 1,
-        height: 440,
+        height: 64,
         zIndex: 1,
         overflow: 'hidden',
         position: 'relative',

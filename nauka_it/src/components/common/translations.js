@@ -11,3 +11,11 @@ export const PL = {
         email: "Napisz do mnie"
     }
 };
+
+export const url = {
+    home: '/',
+    materials: '/materials',
+    programs: '/programs',
+    quiz: '/quiz',
+    email: '/email'
+}

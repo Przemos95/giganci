@@ -15,10 +15,11 @@ import MyMenuItem from './MyMenuItem';
 import CheckBox from '@material-ui/icons/CheckBox';
 import AlternateEmail from '@material-ui/icons/AlternateEmail';
 
-import {PL} from '../../common/translations';
+import {PL, url} from '../../common/translations';
 import {HeaderBarStyles} from '../Styles/HeaderStyles';
+import { checkPropTypes } from 'prop-types';
 
-export const HeaderBar = () => {
+export const HeaderBar = (props) => {
     
     return(
         <div style={HeaderBarStyles.Root}>
@@ -49,30 +50,30 @@ export const HeaderBar = () => {
                 <span style={{height: 64}}></span>
                 <MenuList>
                     <MyMenuItem 
-                        Text={PL.leftMenu.news}
-                        Icon={<Apps />}
-                        //onClick={}
+                        text={PL.leftMenu.news}
+                        icon={<Apps />}
+                        url={url.home}
                         />
                     <MyMenuItem 
-                        Text={PL.leftMenu.materials}
-                        Icon={<Folder />}
-                        //onClick={}
+                        text={PL.leftMenu.materials}
+                        icon={<Folder />}
+                        url={url.materials}
                         />
                     <MyMenuItem 
-                        Text={PL.leftMenu.programs}
-                        Icon={<Archive />}
-                        //onClick={}
+                        text={PL.leftMenu.programs}
+                        icon={<Archive />}
+                        url={url.programs}
                         />
                     <MyMenuItem 
-                        Text={PL.leftMenu.quiz}
-                        Icon={<CheckBox />}
-                        //onClick={}
+                        text={PL.leftMenu.quiz}
+                        icon={<CheckBox />}
+                        url={url.quiz}
                         />
                     <Divider />
                     <MyMenuItem 
-                        Text={PL.leftMenu.email}
-                        Icon={<AlternateEmail />}
-                        //onClick={}
+                        text={PL.leftMenu.email}
+                        icon={<AlternateEmail />}
+                        url={url.email}
                         />
                 </MenuList>
 
