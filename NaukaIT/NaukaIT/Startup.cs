@@ -43,6 +43,7 @@ namespace NaukaIT
             services.AddScoped<IArticleRepository, ArticleRepository>();
             services.AddScoped<IClassGroupRepository, ClassGroupRepository>();
             services.AddScoped<IFileRepository, FileRepository>();
+            services.AddScoped<IEmailRepository, EmailRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +59,7 @@ namespace NaukaIT
             }
 
             app.UseHttpsRedirection();
+            app.UseCors(builder => { builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader(); });
             app.UseMvc();
         }
     }

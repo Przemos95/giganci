@@ -6,3 +6,7 @@ NaukaIT/NaukaIT.Tests/obj/
 NaukaIT/NaukaIT.DAL/obj/
 NaukaIT/NaukaIT.DAL/bin/
 NaukaIT/.vs/NaukaIT/v15/.suo
+NaukaIT/.vs/NaukaIT/v15/Server/sqlite3/storage.ide-wal
+NaukaIT/.vs/NaukaIT/v15/Server/sqlite3/storage.ide-shm
+NaukaIT/.vs/NaukaIT/v15/Server/sqlite3/storage.ide
+NaukaIT/.vs/NaukaIT/DesignTimeBuild/.dtbcache

@@ -33,7 +33,7 @@ const EmailDialog = (props) => {
             />
             <div style={{color: '#888'}}>{props.messageLength}</div>
             <div style={EmailStyles.sendButton}>
-                <Button variant="contained" color="primary">
+                <Button variant="contained" color="primary" onClick={props.onSubmit}>
                     {PL.email.send}
                     <Send style={{ marginLeft: '5px'}} />
                 </Button>
