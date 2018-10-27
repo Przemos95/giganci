@@ -12,6 +12,8 @@ namespace NaukaIT.DAL.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Title { get; set; }
+        public string Shortcut { get; set; }
         public string HTML { get; set; }
+        public string ImgUrl { get; set; }
     }
 }
