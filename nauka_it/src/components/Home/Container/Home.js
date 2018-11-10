@@ -30,7 +30,7 @@ class Home extends React.Component {
                 <Article 
                     key={_.uniqueId('article_')}
                     title={row.title}
-                    description={row.description}
+                    shortcut={row.shortcut}
                     imgSrc={row.imgUrl}
                     url={'/article/' + row.id} />
             ))

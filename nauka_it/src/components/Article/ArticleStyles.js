@@ -7,7 +7,7 @@ export const ArticleStyles = {
         backgroundColor: 'white',
         boxShadow: '10px 10px 20px #222',
         padding: '25px',
-        fontFamily: "'Verdana', sans-serif",
+        fontFamily: '"Proxima Nova Soft", "Helvetica Neue", sans-serif',
         fontWeight: '800'
     },
     line: {

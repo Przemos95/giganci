@@ -26,7 +26,7 @@ class Article extends React.Component {
     render() {
         return (
             <div style={ArticleStyles.container}>
-                <h2 style={{marginBottom: '5px'}}>{this.state.article.title}</h2>
+                <h2 style={{marginBottom: '15px'}}>{this.state.article.title}</h2>
                 <div style={ArticleStyles.line} />
                 <div style={ArticleStyles.shortcut}>
                     {this.state.article.shortcut}

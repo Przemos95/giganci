@@ -7,7 +7,7 @@ const ArticleStyles = {
         backgroundColor: 'white',
         boxShadow: '10px 10px 20px #222',
         padding: '25px',
-        fontFamily: "'Acme', sans-serif",
+        fontFamily: '"Proxima Nova Soft", "Helvetica Neue", sans-serif',
         fontWeight: '500',
         float: 'left',
         textDecoration: 'none',
