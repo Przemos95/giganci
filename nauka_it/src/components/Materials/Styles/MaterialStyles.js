@@ -31,6 +31,14 @@ const MaterialStyles = {
         color: Colors.orange,
         fontSize: '120%',
         cursor: 'pointer'
+    },
+    documentText: { 
+        float: 'left',
+        marginTop: '10px'
+    },
+    documentAttachment: {
+        fontSize: '200%', 
+        float: 'right'
     }
 }
 

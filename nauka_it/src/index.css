@@ -16,3 +16,8 @@ code {
 .article:hover {
   background-color: #ccc !important;
 }
+
+.document:hover, .materialMainItem:hover {
+  color: white !important;
+  background-color: #B04200 !important;
+}
