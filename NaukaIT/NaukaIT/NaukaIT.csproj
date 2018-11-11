@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Content\Documents\Basic2\" />
+    <Folder Include="Content\Documents\Hacking1\" />
+    <Folder Include="Content\Documents\Hacking2\" />
+    <Folder Include="Content\Documents\Unity\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

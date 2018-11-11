@@ -15,10 +15,8 @@ class Article extends React.Component {
     componentDidMount() {
         const {id} = this.props.match.params;
         this.setState({id: id});
-    }
 
-    componentDidUpdate() {
-        onGetArticle(this.state.id).then(response => {
+        onGetArticle(id).then(response => {
             this.setState({article: response.data});
         });
     }

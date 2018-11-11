@@ -11,6 +11,7 @@ import Program from './components/Program/Container/Program';
 import Quiz from './components/Quiz/Container/Quiz';
 import Email from './components/Email/Container/Email';
 import Article from './components/Article/Article';
+import MaterialGroup from './components/Materials/Container/MaterialGroup';
 
 
 class App extends Component {
@@ -27,6 +28,7 @@ class App extends Component {
               <Route path={url.quiz} component={Quiz} />
               <Route path={url.email} component={Email} />
               <Route path='/article/:id' component={Article} />
+              <Route path='/doc/:heading' component={MaterialGroup} />
             </div>
           </div>
         </Router>
