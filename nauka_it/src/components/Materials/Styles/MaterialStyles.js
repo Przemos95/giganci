@@ -39,6 +39,15 @@ const MaterialStyles = {
     documentAttachment: {
         fontSize: '200%', 
         float: 'right'
+    },
+    head: {
+        margin: '10px 5% 0 3%',
+        backgroundColor: 'white',
+        boxShadow: '10px 10px 20px #222',
+        color: Colors.orange,
+        fontSize: '120%',
+        textAlign: 'center',
+        padding: '10px'
     }
 }
 

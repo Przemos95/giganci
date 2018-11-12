@@ -5,6 +5,7 @@ import Document from '../../Materials/Presentational/Document';
 
 import {onGetFile, onGetFiles} from '../../../store/File';
 import {downloadFile} from '../../common/Helpers/FileDownloadHelper';
+import MateriaStyles from '../../Materials/Styles/MaterialStyles';
 
 class GroupFiles extends React.Component {
     constructor() {
@@ -42,6 +43,7 @@ class GroupFiles extends React.Component {
 
         return(
             <div>
+                <div style={MateriaStyles.head}>Programy z zajęć</div>
                 {groupBody}
             </div>
         );

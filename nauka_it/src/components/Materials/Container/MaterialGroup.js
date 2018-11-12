@@ -5,6 +5,7 @@ import Document from '../Presentational/Document';
 
 import {onGetMaterials, onGetMaterial} from '../../../store/Material';
 import {downloadFromResponse} from '../../common/Helpers/FileDownloadHelper';
+import MateriaStyles from '../Styles/MaterialStyles';
 
 class MaterialGroup extends React.Component {
     constructor() {
@@ -42,6 +43,7 @@ class MaterialGroup extends React.Component {
 
         return(
             <div>
+                <div style={MateriaStyles.head}>Materiały Powtórzeniowe</div>
                 {groupBody}
             </div>
         );
