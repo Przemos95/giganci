@@ -9,6 +9,11 @@
     <Folder Include="Content\Documents\Hacking1\" />
     <Folder Include="Content\Documents\Hacking2\" />
     <Folder Include="Content\Documents\Unity\" />
+    <Folder Include="Content\Files\Basic1\" />
+    <Folder Include="Content\Files\Basic2\" />
+    <Folder Include="Content\Files\Hacking1\" />
+    <Folder Include="Content\Files\Hacking2\" />
+    <Folder Include="Content\Files\Unity\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
