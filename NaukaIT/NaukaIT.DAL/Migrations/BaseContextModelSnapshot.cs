@@ -90,6 +90,27 @@ namespace NaukaIT.DAL.Migrations
                     b.ToTable("Files");
                 });
 
+            modelBuilder.Entity("NaukaIT.DAL.Entities.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Group");
+
+                    b.Property<string>("Login");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Password");
+
+                    b.Property<string>("Salt");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("NaukaIT.DAL.Entities.File", b =>
                 {
                     b.HasOne("NaukaIT.DAL.Entities.ClassGroup", "ClassGroup")

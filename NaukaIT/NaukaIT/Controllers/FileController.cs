@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,7 @@ using NaukaIT.DAL.Interfaces;
 
 namespace NaukaIT.Controllers
 {
+    [Authorize]
     [Route("api/file")]
     [ApiController]
     public class FileController : Controller

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ using NaukaIT.DAL.Interfaces;
 
 namespace NaukaIT.Controllers
 {
+    [Authorize]
     [Route("api/document")]
     [ApiController]
     public class DocumentController : Controller

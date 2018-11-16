@@ -15,5 +15,6 @@ namespace NaukaIT.DAL.Entities
         public DbSet<Article> Articles { get; set; }
         public DbSet<File> Files { get; set; }
         public DbSet<Email> Emails { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
