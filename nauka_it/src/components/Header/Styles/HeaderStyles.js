@@ -3,7 +3,8 @@ import {Colors} from '../../common/colors';
 export const HeaderBarStyles = {
     loginBtn: {
         color: 'white',
-        fontWeight: '700'
+        fontWeight: '700',
+        textDecoration: 'none'
     },
     AppBar: {
         height: '64px',
@@ -25,7 +26,20 @@ export const HeaderBarStyles = {
         paddingTop: 64
     },
     MenuItems: {
-        color: Colors.orange,
+        color: Colors.blue,
         fontSize: '120%'
+    },
+    logoutBtn: {
+        padding: '2px 5px',
+        cursor: 'pointer'
+    },
+    userName: {
+        float: 'left', 
+        marginTop: '10px',
+        marginRight: '5px'
+    },
+    logoutPowerBtn: {
+        marginLeft: '5px', 
+        marginTop: '10px'
     }
 };

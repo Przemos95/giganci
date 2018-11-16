@@ -9,6 +9,10 @@ export const onGetFiles = (group) => {
             'Accept': 'application/json'
         }
     };
+    const token = localStorage.getItem('accessToken');
+    if(token != null){
+        headers.headers['Authorization'] = `Bearer ${JSON.parse(token)}`
+    }
 
     return axios
         .get(`${host}/api/file/getGroup?group=${group}`, headers)
@@ -24,6 +28,10 @@ export const onGetFile = (group, name) => {
             'Accept': 'application/json'
         }
     };
+    const token = localStorage.getItem('accessToken');
+    if(token != null){
+        headers.headers['Authorization'] = `Bearer ${JSON.parse(token)}`
+    }
 
     return axios
         .get(`${host}/api/document/Get?group=${group}&name=${name}`, headers)

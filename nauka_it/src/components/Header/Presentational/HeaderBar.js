@@ -14,6 +14,8 @@ import Archive from '@material-ui/icons/Archive';
 import MyMenuItem from './MyMenuItem';
 import CheckBox from '@material-ui/icons/CheckBox';
 import AlternateEmail from '@material-ui/icons/AlternateEmail';
+import {Link} from 'react-router-dom';
+import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew';
 
 import {PL, url} from '../../common/translations';
 import {HeaderBarStyles} from '../Styles/HeaderStyles';
@@ -26,20 +28,28 @@ export const HeaderBar = (props) => {
                 position="absolute"
                 style={HeaderBarStyles.AppBar}>
                 <Toolbar>
-                    <IconButton 
-                        style={{marginRight:'20px'}}>
-                        <MenuIcon />
-                    </IconButton>
                     <Typography 
                         variant="title" 
                         color="inherit" 
                         style={{flex: 1}}>
                         {PL.title}
                     </Typography>
-                    <Button 
-                        style={HeaderBarStyles.loginBtn}>
-                        {PL.headerBar.loginBtn}
-                    </Button>
+                    {props.isAuth
+                    ? 
+                        <div style={HeaderBarStyles.logoutBtn} title={PL.login.logout} onClick={() => props.onLogoutClick()}>
+                            <div style={HeaderBarStyles.userName}>
+                                {props.name}
+                            </div>
+                            <PowerSettingsNew 
+                                title={PL.login.logout} 
+                                style={HeaderBarStyles.logoutPowerBtn} />
+                        </div>
+                    :
+                        <Link to={url.login}
+                            style={HeaderBarStyles.loginBtn}>
+                            {PL.headerBar.loginBtn}
+                        </Link>
+                    }
                 </Toolbar>
             </AppBar>
             <Drawer

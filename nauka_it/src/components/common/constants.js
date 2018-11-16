@@ -4,7 +4,7 @@ export const MaterialTypes = {
         text: 'Wstęp do Programowania 1',
     },
     Basic2: {
-        val: 'basic1',
+        val: 'basic2',
         text: 'Wstęp do Programowania 2',
     },
     Hacking1: {

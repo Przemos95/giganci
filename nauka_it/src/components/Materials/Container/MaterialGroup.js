@@ -1,7 +1,10 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import _ from 'lodash';
 
 import Document from '../Presentational/Document';
+import {CheckGroup} from '../../common/Helpers/CheckGroup';
+import AccessFailed from '../../common/accessFailed';
 
 import {onGetMaterials, onGetMaterial} from '../../../store/Material';
 import {downloadFromResponse} from '../../common/Helpers/FileDownloadHelper';
@@ -12,17 +15,20 @@ class MaterialGroup extends React.Component {
         super();
         this.state = {
             group: '',
-            materials: []
+            materials: [],
+            hasPermisson: false
         };
     }
 
     componentDidMount() {
         const {heading} = this.props.match.params;
-        this.setState({group: heading});
+        let permission = this.props.isAuth && CheckGroup(heading, this.props.group, false);
+        this.setState({group: heading, hasPermisson: permission});
 
-        onGetMaterials(heading).then(response => {
-            this.setState({materials: response.data});
-        });
+        if(permission)
+            onGetMaterials(heading).then(response => {
+                this.setState({materials: response.data});
+            });
     }
 
     handleMaterialClick = (name) => {
@@ -44,10 +50,27 @@ class MaterialGroup extends React.Component {
         return(
             <div>
                 <div style={MateriaStyles.head}>Materiały Powtórzeniowe</div>
-                {groupBody}
+                {!this.state.hasPermisson
+                ? <AccessFailed />
+                : <div>{groupBody}</div>
+                }
             </div>
         );
     }
 }
 
-export default MaterialGroup;
+const mapDispatchToProps = dispatch => {
+    return {
+    };
+};
+
+const mapStateToProps = state => {
+    return{
+        isAuth: state.user.isAuth,
+        group: state.user.user ? state.user.user.group : 0
+    };
+};
+export default connect(
+    mapStateToProps, 
+    mapDispatchToProps
+)(MaterialGroup);

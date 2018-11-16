@@ -15,6 +15,12 @@ export const PL = {
         message: 'Wiadomość',
         rows: '6',
         send: 'Wyślij'
+    },
+    login: {
+        login: 'Login',
+        password: 'Hasło',
+        send: 'Loguj',
+        logout: 'Wyloguj'
     }
 };
 
@@ -23,5 +29,6 @@ export const url = {
     materials: '/materials',
     programs: '/programs',
     quiz: '/quiz',
-    email: '/email'
+    email: '/email',
+    login: '/login'
 }

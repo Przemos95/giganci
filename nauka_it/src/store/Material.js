@@ -6,9 +6,13 @@ export const onGetMaterials = (group) => {
     let headers = {
         'headers': {
             'Content-Type': 'application/json;text/plain;text/json',
-            'Accept': 'application/json'
+            'Accept': 'application/json, text/plain, */*'
         }
     };
+    const token = localStorage.getItem('accessToken');
+    if(token != null){
+        headers.headers['Authorization'] = `Bearer ${JSON.parse(token)}`
+    }
 
     return axios
         .get(`${host}/api/document/getGroup?group=${group}`, headers)
@@ -24,6 +28,10 @@ export const onGetMaterial = (group, name) => {
             'Accept': 'application/json'
         }
     };
+    const token = localStorage.getItem('accessToken');
+    if(token != null){
+        headers.headers['Authorization'] = `Bearer ${JSON.parse(token)}`
+    }
 
     return axios
         .get(`${host}/api/document/Get?group=${group}&name=${name}`, headers)

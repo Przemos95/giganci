@@ -1,7 +1,10 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import _ from 'lodash';
 
 import Document from '../../Materials/Presentational/Document';
+import {CheckGroup} from '../../common/Helpers/CheckGroup';
+import AccessFailed from '../../common/accessFailed';
 
 import {onGetFile, onGetFiles} from '../../../store/File';
 import {downloadFile} from '../../common/Helpers/FileDownloadHelper';
@@ -12,17 +15,20 @@ class GroupFiles extends React.Component {
         super();
         this.state = {
             group: '',
-            files: []
+            files: [],
+            hasPermission: false
         };
     }
 
     componentDidMount() {
         const {heading} = this.props.match.params;
-        this.setState({group: heading});
+        let permission = this.props.isAuth && CheckGroup(heading, this.props.group, false);
+        this.setState({group: heading, hasPermission: permission});
 
-        onGetFiles(heading).then(response => {
-            this.setState({files: response.data});
-        });
+        if (permission)
+            onGetFiles(heading).then(response => {
+                this.setState({files: response.data});
+            });
     }
 
     handleFileClick = (name) => {
@@ -44,10 +50,27 @@ class GroupFiles extends React.Component {
         return(
             <div>
                 <div style={MateriaStyles.head}>Programy z zajęć</div>
-                {groupBody}
+                {!this.state.hasPermission
+                ? <AccessFailed />
+                : <div>{groupBody}</div>
+                }
             </div>
         );
     }
 }
 
-export default GroupFiles;
+const mapDispatchToProps = dispatch => {
+    return {
+    };
+};
+
+const mapStateToProps = state => {
+    return{
+        isAuth: state.user.isAuth,
+        group: state.user.user ? state.user.user.group : 0
+    };
+};
+export default connect(
+    mapStateToProps, 
+    mapDispatchToProps
+)(GroupFiles);

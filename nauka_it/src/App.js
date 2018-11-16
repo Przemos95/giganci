@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+import store from './store/InitialStore';
 
 import './App.css';
 import Header from './components/Header/Container/Header';
@@ -13,12 +15,13 @@ import Email from './components/Email/Container/Email';
 import Article from './components/Article/Article';
 import MaterialGroup from './components/Materials/Container/MaterialGroup';
 import GroupFile from './components/Program/Container/GroupFiles'; 
+import Login from './components/Login/Container/Login';
 
 
 class App extends Component {
   render() {
     return (
-      <div>
+      <Provider store={store}>
         <Router>
           <div>
             <Header />
@@ -31,10 +34,11 @@ class App extends Component {
               <Route path='/article/:id' component={Article} />
               <Route path='/doc/:heading' component={MaterialGroup} />
               <Route path='/file/:heading' component={GroupFile} />
+              <Route path={url.login} component={Login} />
             </div>
           </div>
         </Router>
-      </div>
+      </Provider>
     );
   }
 }

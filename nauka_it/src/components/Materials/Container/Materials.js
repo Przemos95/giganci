@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import _ from 'lodash';
 
 import MainItem from '../Presentational/MainItem';
@@ -30,4 +31,18 @@ class Materials extends React.Component {
     }
 }
 
-export default Materials;
+const mapDispatchToProps = dispatch => {
+    return {
+    };
+};
+
+const mapStateToProps = state => {
+    return{
+        isAuth: state.user.isAuth,
+        group: state.user.user ? state.user.user.group : 0
+    };
+};
+export default connect(
+    mapStateToProps, 
+    mapDispatchToProps
+)(Materials);
