@@ -34,7 +34,7 @@ export const onGetFile = (group, name) => {
     }
 
     return axios
-        .get(`${host}/api/document/Get?group=${group}&name=${name}`, headers)
+        .get(`${host}/api/file/Get?group=${group}&name=${name}`, headers)
         .then(response => {
             return response;
         });

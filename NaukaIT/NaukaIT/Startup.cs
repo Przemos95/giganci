@@ -59,7 +59,7 @@ namespace NaukaIT
                 options.MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.None;
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc();
 
             services.AddDbContext<BaseContext>
                 (options => options.UseSqlServer(Configuration.GetConnectionString("BaseConnection")));
@@ -91,8 +91,7 @@ namespace NaukaIT
                     .AllowAnyOrigin()
                     .AllowAnyMethod()
                     .WithExposedHeaders("content-disposition")
-                    .AllowAnyHeader()
-                    .AllowCredentials();
+                    .AllowAnyHeader();
             });
             app.UseMvc();
         }

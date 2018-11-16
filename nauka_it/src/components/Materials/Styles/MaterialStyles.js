@@ -23,7 +23,7 @@ const MaterialStyles = {
         margin: '10px 3%',
         backgroundColor: 'white',
         boxShadow: '10px 10px 20px #222',
-        padding: '25px',
+        padding: '2%',
         fontFamily: '"Proxima Nova Soft", "Helvetica Neue", sans-serif',
         fontWeight: '500',
         float: 'left',
@@ -42,12 +42,13 @@ const MaterialStyles = {
     },
     head: {
         margin: '10px 5% 0 3%',
+        width: '94%',
         backgroundColor: 'white',
         boxShadow: '10px 10px 20px #222',
         color: Colors.orange,
         fontSize: '120%',
         textAlign: 'center',
-        padding: '10px'
+        padding: '10px 0px'
     }
 }
 
