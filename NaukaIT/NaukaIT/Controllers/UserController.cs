@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -21,11 +22,13 @@ namespace NaukaIT.Controllers
     {
         private IUserService _userService;
         private IConfiguration _configuration;
+        private IMapper _mapper;
 
-        public UserController(IUserService userService, IConfiguration configuration)
+        public UserController(IUserService userService, IConfiguration configuration, IMapper mapper)
         {
             _userService = userService;
             _configuration = configuration;
+            _mapper = mapper;
         }
 
         [HttpPost]

@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using NaukaIT.DAL.DTO;
+using NaukaIT.DAL.Entities;
 using NaukaIT.DAL.Interfaces;
 
 namespace NaukaIT.Controllers
@@ -12,10 +15,12 @@ namespace NaukaIT.Controllers
     public class ArticleController : Controller
     {
         IArticleRepository _articleRepository;
+        IMapper _mapper;
 
-        public ArticleController(IArticleRepository article)
+        public ArticleController(IArticleRepository article, IMapper mapper)
         {
             _articleRepository = article;
+            _mapper = mapper;
         }
 
         [Route("get")]
@@ -23,7 +28,8 @@ namespace NaukaIT.Controllers
         public IActionResult Get(int Id)
         {
             var articles = _articleRepository.Get(Id);
-            return Ok(articles);
+            var articleResource = _mapper.Map<Article, ArticleDTO>(articles);
+            return Ok(articleResource);
         }
 
         [Route("getAll")]
@@ -31,7 +37,8 @@ namespace NaukaIT.Controllers
         public IActionResult GetAll()
         {
             var articles = _articleRepository.GetAll();
-            return Ok(articles);
+            var articleResource = _mapper.Map<List<Article>, List<ArticleDTO>>(articles);
+            return Ok(articleResource);
         }
     }
 }

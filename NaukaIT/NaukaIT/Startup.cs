@@ -17,6 +17,8 @@ using Microsoft.IdentityModel.Tokens;
 using NaukaIT.DAL.Entities;
 using NaukaIT.DAL.Interfaces;
 using NaukaIT.DAL.Repositories;
+using AutoMapper;
+using NaukaIT.Infrastructure;
 
 namespace NaukaIT
 {
@@ -58,6 +60,10 @@ namespace NaukaIT
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.None;
             });
+            services.AddScoped(provider => new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            }).CreateMapper());
 
             services.AddMvc();
 
