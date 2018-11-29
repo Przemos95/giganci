@@ -11,7 +11,8 @@ const ArticleStyles = {
         fontWeight: '500',
         float: 'left',
         textDecoration: 'none',
-        color: 'black'
+        color: 'black',
+        textAlign: 'justify'
     },
     header: {
         fontSize: '20px'

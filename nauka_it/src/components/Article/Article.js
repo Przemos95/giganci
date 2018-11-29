@@ -22,13 +22,16 @@ class Article extends React.Component {
     }
 
     render() {
+        let imgSrc = this.state.article.imgUrl;
         return (
             <div style={ArticleStyles.container}>
                 <h2 style={{marginBottom: '15px'}}>{this.state.article.title}</h2>
                 <div style={ArticleStyles.line} />
                 <div style={ArticleStyles.shortcut}>
+                    {this.state.article.imgUrl ? <img src={require(`../../assets/images/${imgSrc}`)} alt='zdj' style={ArticleStyles.image}></img> : null}
                     {this.state.article.shortcut}
                 </div>
+                <div style={{clear: 'both'}} />
                 <div style={ArticleStyles.description} dangerouslySetInnerHTML={{__html: this.state.article.html}} />
             </div>
         );
