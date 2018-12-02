@@ -38,7 +38,7 @@ namespace NaukaIT.Controllers
         {
             var articles = _articleRepository.GetAll();
             var articleResource = _mapper.Map<List<Article>, List<ArticleDTO>>(articles);
-            return Ok(articleResource);
+            return Ok(articleResource.OrderByDescending(s => s.Id));
         }
     }
 }

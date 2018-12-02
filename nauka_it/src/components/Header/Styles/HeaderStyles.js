@@ -9,7 +9,9 @@ export const HeaderBarStyles = {
     AppBar: {
         height: '64px',
         zIndex: 1201,
-        backgroundColor: Colors.orange
+        backgroundColor: Colors.orange,
+        position: 'fixed',
+        top: 0
     },
     Root: {
         flexGrow: 1,

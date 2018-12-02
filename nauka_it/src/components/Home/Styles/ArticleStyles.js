@@ -3,7 +3,7 @@ import {Colors} from '../../common/colors';
 const ArticleStyles = {
     container: {
         width: '29%',
-        margin: '20px 0%',
+        margin: '20px 1%',
         backgroundColor: 'white',
         boxShadow: '10px 10px 20px #222',
         padding: '25px',
