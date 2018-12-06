@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using NaukaIT.DAL.DTO;
 using NaukaIT.DAL.Entities;
 using NaukaIT.DAL.Interfaces;
+//using Serilog;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -23,12 +25,14 @@ namespace NaukaIT.Controllers
         private IUserService _userService;
         private IConfiguration _configuration;
         private IMapper _mapper;
+        private ILogger _logger;
 
-        public UserController(IUserService userService, IConfiguration configuration, IMapper mapper)
+        public UserController(IUserService userService, IConfiguration configuration, IMapper mapper, ILogger<UserController> logger)
         {
             _userService = userService;
             _configuration = configuration;
             _mapper = mapper;
+            _logger = logger;
         }
 
         [HttpPost]
@@ -45,7 +49,7 @@ namespace NaukaIT.Controllers
                 new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.UniqueName, user.Name)
             };
-
+            _logger.LogWarning("Logged user: " + userDto.Login);
             var key = Encoding.UTF8.GetBytes(_configuration.GetValue<string>("SecretKey"));
 
             var token = new JwtSecurityToken(

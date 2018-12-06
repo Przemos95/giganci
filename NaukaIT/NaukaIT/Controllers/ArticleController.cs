@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using NaukaIT.DAL.DTO;
 using NaukaIT.DAL.Entities;
 using NaukaIT.DAL.Interfaces;
@@ -16,11 +17,13 @@ namespace NaukaIT.Controllers
     {
         IArticleRepository _articleRepository;
         IMapper _mapper;
+        ILogger _logger;
 
-        public ArticleController(IArticleRepository article, IMapper mapper)
+        public ArticleController(IArticleRepository article, IMapper mapper, ILogger<ArticleController> logger)
         {
             _articleRepository = article;
             _mapper = mapper;
+            _logger = logger;
         }
 
         [Route("get")]

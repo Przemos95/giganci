@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using NaukaIT.Code.Const;
 using NaukaIT.DAL.Interfaces;
 
@@ -19,15 +20,17 @@ namespace NaukaIT.Controllers
     {
         IDocumentRepository _documentRepository;
         IHostingEnvironment _hostingEnvironment;
+        ILogger _logger;
 
         private const string ExportFileType = "attachment";
         private string _rootPath;
 
-        public DocumentController(IDocumentRepository docRepo, IHostingEnvironment hosting)
+        public DocumentController(IDocumentRepository docRepo, IHostingEnvironment hosting, ILogger<DocumentController> logger)
         {
             _documentRepository = docRepo;
             _hostingEnvironment = hosting;
             _rootPath = _hostingEnvironment.ContentRootPath;
+            _logger = logger;
         }
 
         [Route("get")]
@@ -43,7 +46,7 @@ namespace NaukaIT.Controllers
             }
             catch (Exception ex)
             {
-                //log ex
+                _logger.LogError("Document_Get error: " + ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, SerwerConsts.DEFAULT_ERROR_MESSAGE);
             }
         }
@@ -59,7 +62,7 @@ namespace NaukaIT.Controllers
             }
             catch (Exception ex)
             {
-                //log ex
+                _logger.LogError("Document_GetGroup error: " + ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, SerwerConsts.DEFAULT_ERROR_MESSAGE);
             }
         }

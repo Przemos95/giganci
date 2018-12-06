@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using NaukaIT.Code.Const;
 using NaukaIT.DAL.DTO;
 using NaukaIT.DAL.Entities;
@@ -18,11 +19,13 @@ namespace NaukaIT.Controllers
     {
         IEmailRepository _emailRepository;
         IMapper _mapper;
+        ILogger _logger;
 
-        public EmailController(IEmailRepository emailR, IMapper mapper)
+        public EmailController(IEmailRepository emailR, IMapper mapper, ILogger<EmailController> logger)
         {
             _emailRepository = emailR;
             _mapper = mapper;
+            _logger = logger;
         }
 
         [HttpPost]
@@ -37,7 +40,7 @@ namespace NaukaIT.Controllers
             }
             catch (Exception ex)
             {
-                //todo: log ex
+                _logger.LogError("Email_Save error: " + ex.Message);
                 return StatusCode(500, new { Error = "ServerError", Description = SerwerConsts.DEFAULT_ERROR_MESSAGE });
             }
         }
