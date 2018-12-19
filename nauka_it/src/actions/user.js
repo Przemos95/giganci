@@ -1,6 +1,8 @@
 import * as actionTypes from './actionTypes';
 import {host} from '../components/common/config';
 import axios from 'axios';
+import { addLoader, removeLoader } from './loader';
+import uuid from 'uuid/v4';
 
 export const loginSuccess = (user, token) => {
     localStorage.setItem('accessToken', JSON.stringify(token));
@@ -27,7 +29,9 @@ export const logout = () => {
 };
 
 export const login = (login, password) => {
+    const loaderId = `login_${uuid()}`;
     return dispatch => {
+        dispatch(addLoader(loaderId));
         
         const url = `${host}/api/user/Authenticate`;
         const data = { login: login, password: password };
@@ -37,6 +41,7 @@ export const login = (login, password) => {
             .post(url, data, {headers})
             .catch(error => {
                 dispatch(loginFailed());
+                dispatch(removeLoader(loaderId));
                 return false;
             })
             .then(response => {
@@ -47,6 +52,7 @@ export const login = (login, password) => {
                     name: response.data.name,
                     group: response.data.group
                 }, response.data.token));
+                dispatch(removeLoader(loaderId));
                 return true;
             });
     };

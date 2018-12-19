@@ -16,6 +16,7 @@ import Article from './components/Article/Article';
 import MaterialGroup from './components/Materials/Container/MaterialGroup';
 import GroupFile from './components/Program/Container/GroupFiles'; 
 import Login from './components/Login/Container/Login';
+import Spinner from './components/SpinnerLoader/Spinner';
 
 
 class App extends Component {
@@ -36,6 +37,7 @@ class App extends Component {
               <Route path='/file/:heading' component={GroupFile} />
               <Route path={url.login} component={Login} />
             </div>
+            <Spinner />
           </div>
         </Router>
       </Provider>
