@@ -1,32 +1,24 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import _ from 'lodash';
 
+import * as actionCreators from '../../../actions/index';
 import Article from '../Presentational/Article';
-import {onGetAllArticles} from '../../../store/Article';
 
 class Home extends React.Component {   
-    constructor() {
-        super();
-        this.state = {
-            articles: []
-        };
-        this.getArticles();
+    constructor(props) {
+        super(props);
 
-        this.getArticles = this.getArticles.bind(this);
+        this.getArticles();
     }
 
     getArticles = () => {
-        onGetAllArticles()
-            .then(response => {
-                let articles = response.data.slice();
-                this.setState({articles: articles});
-            });
-        
+        this.props.onGetArticles();
     };
 
     render() {
         let articleBody = (
-            this.state.articles.map((row, index) => (
+            this.props.articleList.map((row, index) => (
                 <Article 
                     key={_.uniqueId('article_')}
                     title={row.title}
@@ -44,4 +36,18 @@ class Home extends React.Component {
     }
 }
 
-export default Home;
+const mapDispatchToProps = dispatch => {
+    return {
+        onGetArticles: () => dispatch(actionCreators.onGetAllArticles())
+    };
+};
+
+const mapStateToProps = state => {
+    return{
+        articleList: state.articles.articleList
+    };
+};
+export default connect(
+    mapStateToProps, 
+    mapDispatchToProps
+)(Home);

@@ -7,3 +7,7 @@ export {
     addLoader,
     removeLoader
 } from './loader'
+
+export {
+    onGetAllArticles
+} from './article'

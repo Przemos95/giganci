@@ -19,7 +19,6 @@ class Login extends React.Component {
         }
 
         this.onChange = this.handleChange.bind(this);
-        this.onLoginClick = this.handleLoginClick.bind(this);
     }
 
     handleLoginClick = () => {
