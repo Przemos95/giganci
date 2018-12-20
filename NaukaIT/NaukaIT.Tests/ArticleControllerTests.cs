@@ -7,6 +7,8 @@ using Xunit;
 using System.Linq;
 using NaukaIT.Controllers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using AutoMapper;
 
 namespace NaukaIT.Tests
 {
@@ -14,6 +16,7 @@ namespace NaukaIT.Tests
     {
         private List<Article> _articles;
         private ArticleController _articleController;
+        private Mock<ILogger<ArticleController>> _logger;
         private Mock<IArticleRepository> _articleRepository;
 
         public ArticleControllerTests()
@@ -24,8 +27,11 @@ namespace NaukaIT.Tests
                 .Returns((int id) => _articles.FirstOrDefault(s => s.Id == id));
             _articleRepository.Setup(x => x.GetAll()).Returns(_articles);
 
+            _logger = new Mock<ILogger<ArticleController>>();
 
-            _articleController = new ArticleController(_articleRepository.Object);
+            var mapper = new Mock<IMapper>();
+
+            _articleController = new ArticleController(_articleRepository.Object, mapper.Object, _logger.Object);
         }
 
         [Fact]
