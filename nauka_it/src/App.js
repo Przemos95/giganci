@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import store from './store/InitialStore';
 
 import './App.css';
@@ -11,6 +11,7 @@ import Home from './components/Home/Container/Home';
 import Materials from './components/Materials/Container/Materials';
 import Program from './components/Program/Container/Program';
 import Quiz from './components/Quiz/Container/Quiz';
+import QuizGame from './components/QuizGame/QuizGame';
 import Email from './components/Email/Container/Email';
 import Article from './components/Article/Article';
 import MaterialGroup from './components/Materials/Container/MaterialGroup';
@@ -25,7 +26,10 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div>
-            <Header />
+            <Switch>
+              <Route exact path={url.quizGame} component={QuizGame} />
+              <Route component={Header} />
+            </Switch>
             <div style={{marginLeft: 240}}>
               <Route exact path={url.home} component={Home} />
               <Route path={url.materials} component={Materials} />

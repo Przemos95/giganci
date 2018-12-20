@@ -30,5 +30,6 @@ export const url = {
     programs: '/programs',
     quiz: '/quiz',
     email: '/email',
-    login: '/login'
+    login: '/login',
+    quizGame: '/quizGame'
 }
