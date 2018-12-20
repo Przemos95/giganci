@@ -1,5 +1,3 @@
-import {Colors} from '../../common/colors';
-
 const LoginStyles = {
     container: {
         width: '32%',
