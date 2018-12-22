@@ -6,16 +6,15 @@ using System.Text;
 
 namespace NaukaIT.DAL.Entities
 {
-    public class ClassGroup
+    public class ClassificationInGame
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int Day { get; set; }
-        public string StartTime { get; set; }
-
-        public List<File> Files { get; set; }
-        public IEnumerable<Quiz> Quizzes { get; set; }
+        public int ID { get; set; }
+        public int UserId { get; set; }
+        public int QuizId { get; set; }
+        public int Score { get; set; }
+        public int GoodAnswers { get; set; }
+        public int AllAnswers { get; set; }
     }
 }

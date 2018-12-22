@@ -12,5 +12,6 @@ namespace NaukaIT.DAL.Entities
         public string Salt { get; set; }
         public string Name { get; set; }
         public int Group { get; set; }
+        public IEnumerable<UserQuizResult> UserQuizResults { get; set; }
     }
 }

@@ -16,5 +16,9 @@ namespace NaukaIT.DAL.Entities
         public DbSet<File> Files { get; set; }
         public DbSet<Email> Emails { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Quiz> Quiz { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<UserQuizResult> UserQuizResults { get; set; }
+        public DbSet<ClassificationInGame> ClassificationInGame { get; set; }
     }
 }

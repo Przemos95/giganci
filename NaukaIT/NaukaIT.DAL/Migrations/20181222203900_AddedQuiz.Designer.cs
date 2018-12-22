@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NaukaIT.DAL.Entities;
 
 namespace NaukaIT.DAL.Migrations
 {
     [DbContext(typeof(BaseContext))]
-    partial class BaseContextModelSnapshot : ModelSnapshot
+    [Migration("20181222203900_AddedQuiz")]
+    partial class AddedQuiz
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,27 +55,6 @@ namespace NaukaIT.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ClassGroups");
-                });
-
-            modelBuilder.Entity("NaukaIT.DAL.Entities.ClassificationInGame", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AllAnswers");
-
-                    b.Property<int>("GoodAnswers");
-
-                    b.Property<int>("QuizId");
-
-                    b.Property<int>("Score");
-
-                    b.Property<int>("UserId");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("ClassificationInGame");
                 });
 
             modelBuilder.Entity("NaukaIT.DAL.Entities.Email", b =>
@@ -138,7 +119,7 @@ namespace NaukaIT.DAL.Migrations
 
                     b.HasIndex("QuizId");
 
-                    b.ToTable("Questions");
+                    b.ToTable("Question");
                 });
 
             modelBuilder.Entity("NaukaIT.DAL.Entities.Quiz", b =>
@@ -203,7 +184,7 @@ namespace NaukaIT.DAL.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserQuizResults");
+                    b.ToTable("UserQuizResult");
                 });
 
             modelBuilder.Entity("NaukaIT.DAL.Entities.File", b =>
