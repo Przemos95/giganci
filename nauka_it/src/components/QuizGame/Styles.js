@@ -71,3 +71,66 @@ export const StartStyles = {
         margin: '0 40%'
     }
 };
+
+export const SummaryStyles = {
+    container: {
+        width: '100%',
+        height: '100vh',
+        backgroundColor: '#31122F',
+        textAlign: 'center',
+        color: 'white',    
+        fontFamily: "'Acme', sans-serif",
+        fontSize: '24px'
+    },
+    table: {
+        width: '60%',
+        paddingTop: '10%',
+        margin: '0 20%'
+    }
+};
+
+export const TableStyles = {
+    container: {
+        width: '100%',
+        height: '100vh',
+        backgroundColor: '#31122F',
+        textAlign: 'center',
+        color: 'white',    
+        fontFamily: "'Acme', sans-serif",
+        fontSize: '24px'
+    },
+    table: {
+        width: '60%',
+        paddingTop: '10%',
+        margin: '0 0% 0 40%',
+        opacity: '0'
+    }
+};
+
+export const TableItemStyles = {
+    person: {
+        backgroundColor: '#64455F',
+        borderRadius: '25px',
+        padding: '5px 20px',
+        marginBottom: '10px'
+    },
+    currentPerson: {
+        backgroundColor: '#a8899F',
+        borderRadius: '25px',
+        padding: '5px 20px',
+        marginBottom: '10px'
+    },
+    floatLeft: {
+        float: 'left'
+    },
+    floatRight: {
+        float: 'right'
+    },
+    clearBoth: {
+        clear: 'both'
+    },
+    startTable: {
+        marginLeft: '15px',
+        opacity: 0.2
+    }
+};

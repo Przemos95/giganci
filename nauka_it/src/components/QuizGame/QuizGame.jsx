@@ -17,7 +17,7 @@ class QuizGame extends React.Component {
             score: 0,
             progressBar: [],
             screen: GameConsts.SCREEN.START
-        }
+        };
     }
 
     componentDidMount() {
@@ -67,6 +67,10 @@ class QuizGame extends React.Component {
         this.setState({progressBar: progressBarUpdate, answers: answersUpdate, currentQuestion: currentQuestion + 1, screen: GameConsts.SCREEN.TABLE})
     };
 
+    handleTableUnload = () => {
+        this.setState({screen: GameConsts.SCREEN.QUESTION});
+    }
+
     render() {
         let question;
         let answers = [];
@@ -96,9 +100,18 @@ class QuizGame extends React.Component {
                                                             onAnswerClick={this.handleAnswerClick}
                                                             /> : null;
 
-        const tableScreen = screen === GameConsts.SCREEN.TABLE ? <Table /> : null;
+        const tableScreen = screen === GameConsts.SCREEN.TABLE ? <Table 
+                                                                    onTableUnload={this.handleTableUnload}
+                                                                /> : null;
 
-        const summary = screen === GameConsts.SCREEN.SUMMARY ? <Summary /> : null;
+        const summary = screen === GameConsts.SCREEN.SUMMARY ? <Summary clasification={[
+            {position: 1, nick: 'Mateusz L', points: 654, questions: '3/3', isCurrent: false},
+            {position: 2, nick: 'Łukasz F', points: 564, questions: '2/3', isCurrent: false},
+            {position: 3, nick: 'Mariusz K', points: 323, questions: '2/3', isCurrent: false},
+            {position: 4, nick: 'Jurek S', points: 34, questions: '1/3', isCurrent: true},
+            {position: 5, nick: 'Marian A', points: 0, questions: '0/2', isCurrent: false},
+            {position: 6, nick: 'Pawel L', points: 0, questions: '0/2', isCurrent: false}
+        ]}/> : null;
 
         return(
             <div>
