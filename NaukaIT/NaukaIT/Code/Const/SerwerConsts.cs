@@ -11,5 +11,7 @@ namespace NaukaIT.Code.Const
 
         public const string SERVER_NAME = "SupelServer";
         public const string CLIENT_NAME = "SupelReact";
+
+        public const string TOKEN_ID_TYPE = "nameidentifier";
     }
 }

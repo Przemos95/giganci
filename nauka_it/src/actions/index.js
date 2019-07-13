@@ -11,3 +11,9 @@ export {
 export {
     onGetAllArticles
 } from './article'
+
+export {
+    onCheckTime,
+    onGetQuestions,
+    onSetAnswer
+} from './quiz';

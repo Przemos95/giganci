@@ -6,7 +6,7 @@ import {StartStyles} from './Styles';
 const Start = (props) => {
 
     let tick = () => {
-        let startDate = props.startDate
+        let startDate = new Date(props.startDate);
         let current = Date.now();
         let timespan = Math.abs(startDate - current) / 1000;
         let element = <span>{timespan.toString().split('.')[0]}</span>

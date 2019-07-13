@@ -11,5 +11,6 @@ namespace NaukaIT.DAL.DTO
         public string Password { get; set; }
         public string Name { get; set; }
         public int Group { get; set; }
+        public IEnumerable<UserQuizResultDTO> UserQuizResultDTO { get; set; }
     }
 }

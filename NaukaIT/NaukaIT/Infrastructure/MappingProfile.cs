@@ -20,6 +20,15 @@ namespace NaukaIT.Infrastructure
 
             CreateMap<User, UserDTO>();
             CreateMap<UserDTO, User>();
+
+            CreateMap<Quiz, QuizDTO>();
+            CreateMap<QuizDTO, Quiz>();
+
+            CreateMap<Question, QuestionDTO>();
+            CreateMap<QuestionDTO, Question>();
+
+            CreateMap<UserQuizResult, UserQuizResultDTO>();
+            CreateMap<UserQuizResultDTO, UserQuizResult>();
         }
     }
 }

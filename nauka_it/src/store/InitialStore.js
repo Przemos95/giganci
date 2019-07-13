@@ -4,11 +4,13 @@ import thunk from 'redux-thunk';
 import user from '../reducers/userReducer';
 import loading from '../reducers/loaderReducer';
 import articles from '../reducers/articlesReducer';
+import quiz from '../reducers/quizReducer';
 
 const rootReducer = combineReducers({
     user,
     loading,
-    articles
+    articles,
+    quiz
 });
 
 const store = createStore(rootReducer, 

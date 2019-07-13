@@ -1,21 +1,23 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import Start from './Start';
 import Question from './Question';
 import Table from './Table';
 import Summary from './Summary';
+import * as actionsCreators from '../../actions/index';
 
 import {GameConsts} from './QuizGameConsts';
+import { RandomOrder } from '../common/Helpers/RadnomOrder';
 
 class QuizGame extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            questionList: [],
-            questionListLength: 0,
             answers: [],
             currentQuestion: 0,
             score: 0,
             progressBar: [],
+            newQuestionStartTime: null,
             screen: GameConsts.SCREEN.START
         };
     }
@@ -25,51 +27,36 @@ class QuizGame extends React.Component {
     }
 
     getQuestionList = () => {
-        let qList = [];
-
-        qList.push({ question: 'Jaka część języka C# nadaje się do powtarzania czynności w nieskończoność?', 
-                answer1: { id: 1, text: 'Niebieski'}, 
-                answer2: { id: 2, text: 'Czerwony'}, 
-                answer3: { id: 3, text: 'Zielony'}, 
-                answer4: { id: 4, text: 'Biały' }, 
-                correct: 1,
-                id: 0});
-
-                qList.push({ question: 'Jaka część języka C# nadaje się do przechowywania różnych wartości?', 
-                answer1: { id: 1, text: 'Tablica'}, 
-                answer2: { id: 2, text: 'Pętla'}, 
-                answer3: { id: 3, text: 'Metoda'}, 
-                answer4: { id: 4, text: 'Klasa' }, 
-                correct: 1,
-                id: 1});
-                
-        this.setState({questionList: qList, questionListLength: qList.length, answers: new Array(qList.length), progressBar: new Array(qList.length)});
+        this.props.onCheckTime(this.props.quizId);
+        this.props.onGetQuestions(this.props.quizId);
     };
 
     handleStartClick = () => {
         this.setState({screen: GameConsts.SCREEN.QUESTION})
     };
 
-    handleAnswerClick = (id) => {
+    handleAnswerClick = (answer) => {
         const currentQuestion = this.state.currentQuestion;
-        const question = this.state.questionList[currentQuestion];
+        const question = this.props.questions[currentQuestion];
         let progressBarUpdate = this.state.progressBar.slice();
         let answersUpdate = this.state.answers.slice();
+        //todo: mechanizm newQuestionStartTime i wyliczanie sekund
+        this.props.onSetAnswer(question.id, answer, 0, answersUpdate);
 
-        if (id === question.correct)  {
+        if (answer === question.correct)  {
             progressBarUpdate.push(GameConsts.PORGRESS_BAR.SUCCESS);
         }
         else { 
             progressBarUpdate.push(GameConsts.PORGRESS_BAR.FAIL);
         }
-        answersUpdate[question.id] = id;
+        answersUpdate[question.id] = answer;
         
         this.setState({progressBar: progressBarUpdate, answers: answersUpdate, currentQuestion: currentQuestion + 1, screen: GameConsts.SCREEN.TABLE})
     };
 
     handleTableUnload = () => {
         this.setState({screen: GameConsts.SCREEN.QUESTION});
-    }
+    };
 
     render() {
         let question;
@@ -77,24 +64,30 @@ class QuizGame extends React.Component {
         let screen = this.state.screen;
 
         if (screen === GameConsts.SCREEN.QUESTION) {
-            if (this.state.currentQuestion === this.state.questionListLength) {
+            if (this.state.currentQuestion === this.props.questions.length) {
                 screen = GameConsts.SCREEN.SUMMARY;
                 this.setState({screen: GameConsts.SCREEN.SUMMARY});
             }
             else {
-                question = this.state.questionList[this.state.currentQuestion];
-                answers = [question.answer1, question.answer2, question.answer3, question.answer4];
+                question = this.props.questions[this.state.currentQuestion];
+                answers = [
+                    {id: 'A', text: question.answerA}, 
+                    {id: 'B', text: question.answerB},
+                    {id: 'C', text: question.answerC}, 
+                    {id: 'D', text: question.answerD}
+                ];
+                answers = RandomOrder(answers);
             }
         }
 
         const startScreen = screen === GameConsts.SCREEN.START ? <Start 
                                                     nick='Lama'
-                                                    startDate={new Date(2018, 11, 20, 10, 13, 0, 0)}
+                                                    startDate={this.props.startTime}
                                                     onStartClick={this.handleStartClick}/> 
                                                 : null;
         
         const questionScreen = screen === GameConsts.SCREEN.QUESTION ? <Question
-                                                            question={question.question}
+                                                            question={question.text}
                                                             answers={answers}
                                                             progressBar={this.state.progressBar}
                                                             onAnswerClick={this.handleAnswerClick}
@@ -104,14 +97,7 @@ class QuizGame extends React.Component {
                                                                     onTableUnload={this.handleTableUnload}
                                                                 /> : null;
 
-        const summary = screen === GameConsts.SCREEN.SUMMARY ? <Summary clasification={[
-            {position: 1, nick: 'Mateusz L', points: 654, questions: '3/3', isCurrent: false},
-            {position: 2, nick: 'Łukasz F', points: 564, questions: '2/3', isCurrent: false},
-            {position: 3, nick: 'Mariusz K', points: 323, questions: '2/3', isCurrent: false},
-            {position: 4, nick: 'Jurek S', points: 34, questions: '1/3', isCurrent: true},
-            {position: 5, nick: 'Marian A', points: 0, questions: '0/2', isCurrent: false},
-            {position: 6, nick: 'Pawel L', points: 0, questions: '0/2', isCurrent: false}
-        ]}/> : null;
+        const summary = screen === GameConsts.SCREEN.SUMMARY ? <Summary /> : null;
 
         return(
             <div>
@@ -122,6 +108,23 @@ class QuizGame extends React.Component {
             </div>
         );
     }
-}
+};
 
-export default QuizGame;
+const mapStateToProps = (state) => {
+    return { 
+        quizId: state.quiz.quizId,
+        startTime: state.quiz.startTime,
+        questions: state.quiz.questions,
+        classification: state.quiz.classification
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onCheckTime: (quizId) => dispatch(actionsCreators.onCheckTime(quizId)),
+        onGetQuestions: (quizId) => dispatch(actionsCreators.onGetQuestions(quizId)),
+        onSetAnswer: (questionId, answer, seconds, answers) => dispatch(actionsCreators.onSetAnswer(questionId, answer, seconds, answers))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(QuizGame);

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using NaukaIT.DAL.Entities;
 using NaukaIT.DAL.Interfaces;
@@ -43,7 +44,7 @@ namespace NaukaIT.DAL.Repositories
 
         public User GetById(int id)
         {
-            return _context.Users.FirstOrDefault(s => s.Id == id);
+            return _context.Users.Include(s => s.UserQuizResults).FirstOrDefault(s => s.Id == id);
         }
 
         private static bool VerifyPasswordHash(string password, string storedHash, string storedSalt)

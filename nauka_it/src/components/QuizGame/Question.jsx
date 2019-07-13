@@ -8,7 +8,7 @@ const Question = (props) => {
         <div style={QuestionStyles.container}>
             <div style={QuestionStyles.progressBar}>
                 {props.progressBar.map((row, index) =>(
-                    row === GameConsts.PORGRESS_BAR.SUCCESS ? <div style={QuestionStyles.progressGreen} /> : <div style={QuestionStyles.progressRed} />
+                    row === GameConsts.PORGRESS_BAR.SUCCESS ? <div key={index} style={QuestionStyles.progressGreen} /> : <div key={index} style={QuestionStyles.progressRed} />
                 ))}
             </div>
             <div style={QuestionStyles.question}>
