@@ -32,7 +32,7 @@ class QuizGame extends React.Component {
     };
 
     handleStartClick = () => {
-        this.setState({screen: GameConsts.SCREEN.QUESTION})
+        this.setState({screen: GameConsts.SCREEN.QUESTION, newQuestionStartTime: Date.now()})
     };
 
     handleAnswerClick = (answer) => {
@@ -40,8 +40,9 @@ class QuizGame extends React.Component {
         const question = this.props.questions[currentQuestion];
         let progressBarUpdate = this.state.progressBar.slice();
         let answersUpdate = this.state.answers.slice();
-        //todo: mechanizm newQuestionStartTime i wyliczanie sekund
-        this.props.onSetAnswer(question.id, answer, 0, answersUpdate);
+        let answerClickedTime = Date.now();
+        let seconds = Math.trunc((answerClickedTime - this.state.newQuestionStartTime) / 1000);
+        this.props.onSetAnswer(question.id, answer, seconds, answersUpdate);
 
         if (answer === question.correct)  {
             progressBarUpdate.push(GameConsts.PORGRESS_BAR.SUCCESS);
@@ -51,11 +52,15 @@ class QuizGame extends React.Component {
         }
         answersUpdate[question.id] = answer;
         
-        this.setState({progressBar: progressBarUpdate, answers: answersUpdate, currentQuestion: currentQuestion + 1, screen: GameConsts.SCREEN.TABLE})
+        this.setState({progressBar: progressBarUpdate, 
+            answers: answersUpdate, 
+            currentQuestion: currentQuestion + 1, 
+            screen: GameConsts.SCREEN.TABLE
+        });
     };
 
     handleTableUnload = () => {
-        this.setState({screen: GameConsts.SCREEN.QUESTION});
+        this.setState({screen: GameConsts.SCREEN.QUESTION, newQuestionStartTime: Date.now()});
     };
 
     handleEndClick = () => {
