@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 
 import TableItem from './TableItem';
-import {SummaryStyles} from './Styles';
+import {SummaryStyles, StartStyles} from './Styles';
 
 class Summary extends React.Component {
     render() {
@@ -21,6 +21,7 @@ class Summary extends React.Component {
                             isCurrent={row.isCurrent}
                         />
                     ))}
+                    <div style={StartStyles.button} onClick={() => this.props.onEndClick()}>Zakończ</div>
                 </div>
             </div>
         );

@@ -77,7 +77,7 @@ export const onSetAnswer = (questionId, answer, seconds, answers) => {
         let url = `${host}/api/quiz/answer`;
         
         let config = {
-            headers: {'Authorization': `Bearer ${JSON.parse(localStorage.getItem('accessToken'))}`}
+            headers: {'Authorization': `Bearer ${JSON.parse(localStorage.getItem('accessUserToken'))}`}
         };
 
         return axios

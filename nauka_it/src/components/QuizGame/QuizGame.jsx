@@ -58,6 +58,10 @@ class QuizGame extends React.Component {
         this.setState({screen: GameConsts.SCREEN.QUESTION});
     };
 
+    handleEndClick = () => {
+        window.location = '/quiz';
+    };
+
     render() {
         let question;
         let answers = [];
@@ -97,7 +101,8 @@ class QuizGame extends React.Component {
                                                                     onTableUnload={this.handleTableUnload}
                                                                 /> : null;
 
-        const summary = screen === GameConsts.SCREEN.SUMMARY ? <Summary /> : null;
+        const summary = screen === GameConsts.SCREEN.SUMMARY ? <Summary 
+                                                            onEndClick={this.handleEndClick}/> : null;
 
         return(
             <div>

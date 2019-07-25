@@ -9,7 +9,7 @@ export const onGetMaterials = (group) => {
             'Accept': 'application/json, text/plain, */*'
         }
     };
-    const token = localStorage.getItem('accessToken');
+    const token = localStorage.getItem('accessUserToken');
     if(token != null){
         headers.headers['Authorization'] = `Bearer ${JSON.parse(token)}`
     }
@@ -28,7 +28,7 @@ export const onGetMaterial = (group, name) => {
             'Accept': 'application/json'
         }
     };
-    const token = localStorage.getItem('accessToken');
+    const token = localStorage.getItem('accessUserToken');
     if(token != null){
         headers.headers['Authorization'] = `Bearer ${JSON.parse(token)}`
     }
