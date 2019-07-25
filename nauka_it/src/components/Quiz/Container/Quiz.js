@@ -5,6 +5,7 @@ import _ from 'lodash';
 import {onGetQuizzes} from '../../../actions/quiz';
 import MainItem from '../../Materials/Presentational/MainItem';
 import Timelapse from '@material-ui/icons/Timelapse';
+import { MenuItem } from '@material-ui/core';
 
 class Quiz extends React.Component {
     componentDidMount = () => {
@@ -51,10 +52,22 @@ class Quiz extends React.Component {
                         />
                 );
             });
-            
+        
+        let noQuizzez = 
+            (<MainItem
+                key={_.uniqueId('quiz_')}
+                url={window.location}
+                text="Nie odnaleziono quizów dla danego użytkownika. Sprawdź czy jesteś zalogowany."
+                icon={<Timelapse
+                        style={{ fontSize: '200%', float: 'left'}} />
+                }
+                />);
+                
         return(
             <div>
-                {quizList}
+                {quizList.length > 0
+                    ? quizList
+                    : noQuizzez}
             </div>
         );
     }
