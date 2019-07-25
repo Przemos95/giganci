@@ -17,6 +17,7 @@ namespace NaukaIT.DAL.Entities
         public DateTime EndDate { get; set; }
         public ClassGroup ClassGroup { get; set; }
         public IEnumerable<Question> Questions { get; set; }
+        public IEnumerable<ClassificationInGame> ClassificationInGame { get; set; }
         public IEnumerable<UserQuizResult> UserQuizResults { get; set; }
     }
 }

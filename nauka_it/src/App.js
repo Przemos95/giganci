@@ -27,7 +27,7 @@ class App extends Component {
         <Router>
           <div>
             <Switch>
-              <Route exact path={url.quizGame} component={QuizGame} />
+              <Route exact path={`${url.quizGame}/:id`} component={QuizGame} />
               <Route component={Header} />
             </Switch>
             <div style={{marginLeft: 240}}>

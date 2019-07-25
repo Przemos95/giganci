@@ -24,6 +24,25 @@ namespace NaukaIT.Infrastructure
             CreateMap<Quiz, QuizDTO>();
             CreateMap<QuizDTO, Quiz>();
 
+            CreateMap<List<Quiz>, List<QuizDTO>>()
+                .ConstructUsing((q, qdto) =>
+                {
+                    var quizzesDto = new List<QuizDTO>();
+
+                    foreach (var qi in q)
+                    {
+                        quizzesDto.Add(new QuizDTO()
+                        {
+                            ID = qi.ID,
+                            Name = qi.Name,
+                            StartDate = qi.StartDate,
+                            EndDate = qi.EndDate,
+                            IsBlocked = qi.EndDate < DateTime.Now
+                        });
+                    }
+                    return quizzesDto;
+                });
+
             CreateMap<Question, QuestionDTO>();
             CreateMap<QuestionDTO, Question>();
 

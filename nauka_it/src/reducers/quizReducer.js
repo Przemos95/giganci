@@ -2,7 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../store/index';
 
 const initialState = {
-    quizId: 1,
+    quizzes: [],
     startTime: null,
     questions: [],
     classification: []
@@ -10,6 +10,8 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
+        case actionTypes.GET_QUIZZES:
+            return getQuizzes(state, action);
         case actionTypes.CHECK_TIME:
             return checkTime(state, action);
         case actionTypes.GET_QUESTIONS:
@@ -19,6 +21,10 @@ const reducer = (state = initialState, action) => {
         default:
             return state;
     }
+};
+
+const getQuizzes = (state, action) => {
+    return updateObject(state, {quizzes: action.quizzes});
 };
 
 const checkTime = (state, action) => {

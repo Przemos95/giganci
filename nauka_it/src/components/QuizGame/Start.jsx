@@ -31,6 +31,7 @@ const Start = (props) => {
                     <h2>Twój nick: {props.nick}</h2>
                     <div>Czekaj na rozpoczęcie gry.</div>
                     <div id='tick'></div>
+                    <div style={StartStyles.button} onClick={() => props.onEndClick()}>Powrót</div>
                 </div>
             </div>
         </div>

@@ -51,7 +51,9 @@ namespace NaukaIT.DAL.Repositories
 
         public IQueryable<Quiz> GetQuizzesForGroup(int groupId)
         {
-            return _baseContext.Quiz.Where(s => s.ClassGroupId == groupId);
+            return _baseContext.Quiz
+                .Include(s => s.ClassificationInGame)
+                .Where(s => s.ClassGroupId == groupId);
         }
 
         public int Answer(int questionId, char answer, int seconds, string answers, int userId)

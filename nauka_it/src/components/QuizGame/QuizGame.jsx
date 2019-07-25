@@ -13,6 +13,7 @@ class QuizGame extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            quizId: 0,
             answers: [],
             currentQuestion: 0,
             score: 0,
@@ -23,12 +24,15 @@ class QuizGame extends React.Component {
     }
 
     componentDidMount() {
-        this.getQuestionList();
+        const {id} = this.props.match.params;
+        this.setState({quizId: id});
+
+        this.getQuestionList(id);
     }
 
-    getQuestionList = () => {
-        this.props.onCheckTime(this.props.quizId);
-        this.props.onGetQuestions(this.props.quizId);
+    getQuestionList = (quizId) => {
+        this.props.onCheckTime(quizId);
+        this.props.onGetQuestions(quizId);
     };
 
     handleStartClick = () => {
@@ -92,7 +96,8 @@ class QuizGame extends React.Component {
         const startScreen = screen === GameConsts.SCREEN.START ? <Start 
                                                     nick='Lama'
                                                     startDate={this.props.startTime}
-                                                    onStartClick={this.handleStartClick}/> 
+                                                    onStartClick={this.handleStartClick}
+                                                    onEndClick={this.handleEndClick}/> 
                                                 : null;
         
         const questionScreen = screen === GameConsts.SCREEN.QUESTION ? <Question
@@ -121,8 +126,7 @@ class QuizGame extends React.Component {
 };
 
 const mapStateToProps = (state) => {
-    return { 
-        quizId: state.quiz.quizId,
+    return {
         startTime: state.quiz.startTime,
         questions: state.quiz.questions,
         classification: state.quiz.classification

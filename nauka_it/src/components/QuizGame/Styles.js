@@ -68,7 +68,7 @@ export const StartStyles = {
         borderRadius: '25px',
         cursor: 'pointer',
         backgroundColor: '#906702',
-        margin: '0 40%'
+        margin: '20px 40%'
     }
 };
 

@@ -16,5 +16,6 @@ namespace NaukaIT.DAL.Entities
         public int Score { get; set; }
         public int GoodAnswers { get; set; }
         public int AllAnswers { get; set; }
+        public Quiz Quiz { get; set; }
     }
 }

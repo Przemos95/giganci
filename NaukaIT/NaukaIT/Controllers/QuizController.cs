@@ -19,12 +19,14 @@ namespace NaukaIT.Controllers
     public class QuizController : Controller
     {
         IQuizRepository _quizRepository;
+        IUserService _userService;
         IMapper _mapper;
         ILogger _logger;
 
-        public QuizController(IQuizRepository quizRepository, IMapper mapper, ILogger<QuizController> logger)
+        public QuizController(IQuizRepository quizRepository, IUserService userService, IMapper mapper, ILogger<QuizController> logger)
         {
             _quizRepository = quizRepository;
+            _userService = userService;
             _mapper = mapper;
             _logger = logger;
         }
@@ -42,6 +44,29 @@ namespace NaukaIT.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Quiz\\GetQuiz");
+                return StatusCode(StatusCodes.Status500InternalServerError, SerwerConsts.DEFAULT_ERROR_MESSAGE);
+            }
+        }
+
+        [Route("getQuizzes")]
+        [HttpGet]
+        public IActionResult GetQuizzes()
+        {
+            try
+            {
+                var userId = User.Claims.FirstOrDefault(s => s.Type.EndsWith(SerwerConsts.TOKEN_ID_TYPE)).Value;
+                var user = _userService.GetById(int.Parse(userId));
+                var quizzes = _quizRepository.GetQuizzesForGroup(user.Group).ToList();
+                var quizzesResource = _mapper.Map<List<Quiz>, List<QuizDTO>>(quizzes);
+                foreach (var quiz in quizzesResource)
+                {
+                    quiz.IsBlocked = quiz.IsBlocked || quizzes.Single(q => q.ID == quiz.ID).ClassificationInGame.Any(u => u.UserId.ToString() == userId);
+                }
+                return Ok(quizzesResource);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Quiz\\GetQuizzes");
                 return StatusCode(StatusCodes.Status500InternalServerError, SerwerConsts.DEFAULT_ERROR_MESSAGE);
             }
         }
