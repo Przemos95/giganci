@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
+import ApiMiddleware from './ApiMiddleware'
 
 import user from '../reducers/userReducer';
 import loading from '../reducers/loaderReducer';
@@ -14,7 +15,7 @@ const rootReducer = combineReducers({
 });
 
 const store = createStore(rootReducer, 
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    applyMiddleware(thunk));
+        applyMiddleware(thunk, ApiMiddleware)
+    );
 
 export default store;

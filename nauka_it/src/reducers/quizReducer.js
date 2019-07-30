@@ -1,5 +1,6 @@
 import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../store/index';
+import { RandomOrder } from '../components/common/Helpers/RadnomOrder';
 
 const initialState = {
     quizzes: [],
@@ -24,19 +25,19 @@ const reducer = (state = initialState, action) => {
 };
 
 const getQuizzes = (state, action) => {
-    return updateObject(state, {quizzes: action.quizzes});
+    return updateObject(state, {quizzes: action.data});
 };
 
 const checkTime = (state, action) => {
-    return updateObject(state, {startTime: action.startTime});
+    return updateObject(state, {startTime: action.data});
 };
 
 const getQuestions = (state, action) => {
-    return updateObject(state, {questions: action.questions});
+    return updateObject(state, {questions: RandomOrder(action.data)});
 };
 
 const setAnswer = (state, action) => {
-    return updateObject(state, {classification: action.classification});
+    return updateObject(state, {classification: action.data});
 };
 
 export default reducer;
