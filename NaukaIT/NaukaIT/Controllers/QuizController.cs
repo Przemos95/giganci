@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -16,6 +17,7 @@ namespace NaukaIT.Controllers
 {
     [Route("api/quiz")]
     [ApiController]
+    [Authorize]
     public class QuizController : Controller
     {
         IQuizRepository _quizRepository;

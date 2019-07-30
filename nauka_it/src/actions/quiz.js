@@ -53,7 +53,8 @@ export const onCheckTime = (quizId) => {
         let headers = {
             'headers': {
                 'Content-Type': 'application/json;text/plain;text/json',
-                'Accept': 'application/json'
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('accessUserToken'))}`
             }
         };
         let url = `${host}/api/quiz/checkTime?id=${quizId}`;
@@ -82,7 +83,8 @@ export const onGetQuestions = (quizId) => {
         let headers = {
             'headers': {
                 'Content-Type': 'application/json;text/plain;text/json',
-                'Accept': 'application/json'
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('accessUserToken'))}`
             }
         };
         let url = `${host}/api/quiz/questions?id=${quizId}`;
@@ -144,7 +146,8 @@ export const onGetClassification = (quizId) => {
         let headers = {
             'headers': {
                 'Content-Type': 'application/json;text/plain;text/json',
-                'Accept': 'application/json'
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('accessUserToken'))}`
             }
         };
         let url = `${host}/api/quiz/classification?id=${quizId}`;
