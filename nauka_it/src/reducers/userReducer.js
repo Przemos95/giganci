@@ -10,10 +10,10 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     if (!state.user) {
-        let user = localStorage.getItem('user');
+        let user = localStorage.user;
         if (user != null) {
             state.user = {...JSON.parse(user)};
-            state.token = JSON.parse(localStorage.getItem('accessUserToken'));
+            state.token = JSON.parse(localStorage.accessUserToken);
             state.isAuth = true;
         }
     }

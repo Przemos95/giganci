@@ -5,8 +5,8 @@ import { addLoader, removeLoader } from './loader';
 import uuid from 'uuid/v4';
 
 export const loginSuccess = (user, token) => {
-    localStorage.setItem('accessUserToken', JSON.stringify(token));
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.accessUserToken = JSON.stringify(token);
+    localStorage.user = JSON.stringify(user);
     return {
         type: actionTypes.LOGIN_SUCCESS,
         token: token,
