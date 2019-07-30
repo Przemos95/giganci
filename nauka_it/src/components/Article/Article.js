@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {onGetArticle} from '../../store/Article';
+import {onGetArticle} from '../../actions/index';
 import {ArticleStyles} from './ArticleStyles';
 
 class Article extends React.Component {

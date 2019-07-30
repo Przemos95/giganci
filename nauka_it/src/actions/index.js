@@ -9,7 +9,8 @@ export {
 } from './loader'
 
 export {
-    onGetAllArticles
+    onGetAllArticles,
+    onGetArticle
 } from './article'
 
 export {

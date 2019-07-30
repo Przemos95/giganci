@@ -15,7 +15,7 @@ const reducer = (state = initialState, action) => {
 };
 
 const getArticlesSuccess = (state, action) => {
-    return updateObject(state, {articleList: action.articles});
+    return updateObject(state, {articleList: action.data});
 };
 
 export default reducer;

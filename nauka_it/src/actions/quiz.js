@@ -4,10 +4,10 @@ import uuid from 'uuid/v4';
 export const onGetQuizzes = () => {
     const loaderId = `quiz_${uuid()}`;
     return dispatch => {
-        if (!localStorage.getItem('accessUserToken')) {
+        if (!localStorage.accessUserToken) {
             dispatch({
                 type: actionTypes.GET_QUIZZES,
-                quizzes: []
+                data: []
             });
             return;
         }

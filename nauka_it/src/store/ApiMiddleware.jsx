@@ -17,12 +17,16 @@ const ApiMiddleware = ({ dispatch }) => next => (action) => {
     
     dispatch(addLoader(loaderId));
 
+    let headers = {
+        'Content-Type': 'application/json;text/plain;text/json',
+        'Accept': 'application/json',
+    }
+    if (!!localStorage.accessUserToken) {
+        headers.Authorization = `Bearer ${JSON.parse(localStorage.accessUserToken)}`
+    }
+
     const request = {
-        headers: {
-            'Content-Type': 'application/json;text/plain;text/json',
-            'Accept': 'application/json',
-            'Authorization': `Bearer ${JSON.parse(localStorage.getItem('accessUserToken'))}`
-        },
+        headers: headers,
         url: `${host}/api/${url}`,
         method,
         params,
