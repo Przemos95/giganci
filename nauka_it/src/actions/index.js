@@ -15,5 +15,6 @@ export {
 export {
     onCheckTime,
     onGetQuestions,
-    onSetAnswer
+    onSetAnswer,
+    onGetClassification
 } from './quiz';

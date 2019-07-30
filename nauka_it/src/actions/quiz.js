@@ -136,3 +136,32 @@ export const onSetAnswer = (questionId, answer, seconds, answers) => {
             });
     };
 };
+
+export const onGetClassification = (quizId) => {
+    const loaderId = `classification_${uuid()}`;
+    return dispatch => {
+        dispatch(addLoader(loaderId));
+        let headers = {
+            'headers': {
+                'Content-Type': 'application/json;text/plain;text/json',
+                'Accept': 'application/json'
+            }
+        };
+        let url = `${host}/api/quiz/classification?id=${quizId}`;
+        axios
+            .get(url, headers)
+            .catch(error => {
+                dispatch(removeLoader(loaderId));
+                return false;
+            })
+            .then(response => {
+                dispatch(removeLoader(loaderId));
+                dispatch({
+                    type: actionTypes.SET_ANSWER,
+                    classification: response.data
+                });
+                return true;
+            });
+    };
+
+};

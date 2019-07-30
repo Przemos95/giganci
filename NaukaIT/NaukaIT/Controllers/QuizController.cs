@@ -112,7 +112,7 @@ namespace NaukaIT.Controllers
             {
                 var userId = User.Claims.FirstOrDefault(s => s.Type.EndsWith(SerwerConsts.TOKEN_ID_TYPE)).Value;
                 var quizId = _quizRepository.Answer(answer.QuestionId, answer.Answer, answer.Seconds, string.Join(";", answer.Answers), int.Parse(userId));
-                var classification = _quizRepository.GetCurrentClasification(quizId);
+                var classification = _quizRepository.GetCurrentClasification(quizId).ToList();
                 return Ok(classification);
             }
             catch (Exception ex)
@@ -122,6 +122,20 @@ namespace NaukaIT.Controllers
             }
         }
 
-
+        [Route("classification")]
+        [HttpGet]
+        public IActionResult GetClassification(int id)
+        {
+            try
+            {
+                var classification = _quizRepository.GetCurrentClasification(id).ToList();
+                return Ok(classification);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Quiz\\GetClassification");
+                return StatusCode(StatusCodes.Status500InternalServerError, SerwerConsts.DEFAULT_ERROR_MESSAGE);
+            }
+        }
     }
 }

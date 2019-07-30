@@ -12,12 +12,13 @@ const MainItem = (props) => {
                         style={MaterialStyles.folder}/>
                 : props.icon}
             
-            
-            <div style={{marginTop: '10px'}}>
-                {props.text}
-            </div>
-            <div style={{fontSize: '11px'}}>
-                {props.comment}
+            <div style={{float: 'left'}}>
+                <div style={{marginTop: '10px'}}>
+                    {props.text}
+                </div>
+                <div style={{fontSize: '11px'}}>
+                    {props.comment}
+                </div>
             </div>
         </Link>
     );

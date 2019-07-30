@@ -12,6 +12,7 @@ import Materials from './components/Materials/Container/Materials';
 import Program from './components/Program/Container/Program';
 import Quiz from './components/Quiz/Container/Quiz';
 import QuizGame from './components/QuizGame/QuizGame';
+import QuizTable from './components/Quiz/Container/QuizTable';
 import Email from './components/Email/Container/Email';
 import Article from './components/Article/Article';
 import MaterialGroup from './components/Materials/Container/MaterialGroup';
@@ -35,6 +36,7 @@ class App extends Component {
               <Route path={url.materials} component={Materials} />
               <Route path={url.programs} component={Program} />
               <Route path={url.quiz} component={Quiz} />
+              <Route path='/quizTable/:id' component={QuizTable} />
               <Route path={url.email} component={Email} />
               <Route path='/article/:id' component={Article} />
               <Route path='/doc/:heading' component={MaterialGroup} />

@@ -5,7 +5,6 @@ import _ from 'lodash';
 import {onGetQuizzes} from '../../../actions/quiz';
 import MainItem from '../../Materials/Presentational/MainItem';
 import Timelapse from '@material-ui/icons/Timelapse';
-import { MenuItem } from '@material-ui/core';
 
 class Quiz extends React.Component {
     componentDidMount = () => {
@@ -43,7 +42,7 @@ class Quiz extends React.Component {
                 return (
                     <MainItem
                         key={_.uniqueId('quiz_')}
-                        url={q.isBlocked ? window.location : `/quizgame/${q.id}`}
+                        url={q.isBlocked ? `quiztable/${q.id}` : `/quizgame/${q.id}`}
                         text={q.name}
                         comment={comment}
                         icon={<Timelapse
