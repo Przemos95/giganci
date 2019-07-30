@@ -57,7 +57,7 @@ namespace NaukaIT.Controllers
                 Code.Const.SerwerConsts.CLIENT_NAME,
                 claims,
                 DateTime.Now,
-                DateTime.Now.AddDays(1),
+                DateTime.Today.AddDays(1),
                 new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)
             );
 

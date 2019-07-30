@@ -1,5 +1,6 @@
 import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../store/index';
+import jwtDecode from 'jwt-decode';
 
 const initialState = {
     user: null,
@@ -9,10 +10,15 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-    if (!state.user) {
-        let user = localStorage.user;
-        if (user != null) {
-            state.user = {...JSON.parse(user)};
+    if (!state.user && localStorage.accessUserToken != null) {
+        let expireDate = jwtDecode(localStorage.accessUserToken).exp;
+        if (new Date(expireDate * 1000) < new Date()) {
+            state.user = null;
+            state.token = null;
+            state.isAuth = false;
+            state.loginError = false;
+        } else {
+            state.user = {...JSON.parse(localStorage.user)};
             state.token = JSON.parse(localStorage.accessUserToken);
             state.isAuth = true;
         }
