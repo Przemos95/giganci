@@ -24,7 +24,7 @@ class QuizGame extends React.Component {
     }
 
     componentDidMount() {
-        if (!localStorage.getItem('accessUserToken'))
+        if (!localStorage.accessUserToken)
             window.location = '/quiz';
 
         const {id} = this.props.match.params;
